@@ -90,7 +90,7 @@ router.get('/signout', isAuth, (req, res) => {
 })
 
 //Returns Admin dashboard - private route, requires Auth
-router.get('/dashboard', isAuth, async (req, res) => {
+router.get('/dashboard', async (req, res) => {
     try {
         var pinDocuments, eventDocuments, routeDocuments;
         await FormPinPoints.find({}, null, {sort:{ category: -1 }}, function(err, pinDocs) {
