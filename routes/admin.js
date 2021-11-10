@@ -25,9 +25,9 @@ var { isAuth } = require('../middleware/isAuth');
 require('../middleware/passport')(passport);
 
 const User = require('../models/User');
-const PinPoints = require('../models/PinPoints');
-const Events = require('../models/Events');
-const Routes = require('../models/Routes');
+const FormPinPoints = require('../models/PinPoints');
+const FormEvents = require('../models/Events');
+const FormRoutes = require('../models/Routes');
 
 router.use(express.static('www'));
 
@@ -92,16 +92,19 @@ router.get('/signout', isAuth, (req, res) => {
 //Returns Admin dashboard - private route, requires Auth
 router.get('/dashboard', isAuth, async (req, res) => {
     try {
-        /*var eventDocuments, routeDocuments;
-        
-        await Events.find({}, (err, eventDocs) => {
+        var pinDocuments, eventDocuments, routeDocuments;
+        await FormPinPoints.find({}, null, {sort:{ category: -1 }}, function(err, pinDocs) {
+            if (err) throw err;
+            pinDocuments = pinDocs;
+        })
+        await FormEvents.find({}, (err, eventDocs) => {
             if (err) throw err;
             eventDocuments = eventDocs
         })
-        await Routes.find({}, (err, routeDocs) => {
+        await FormRoutes.find({}, (err, routeDocs) => {
             if (err) throw err;
             routeDocuments = routeDocs
-        })*/
+        })
 
         res.status(200).render('adminDashboard', { layout: 'admin', pinsExist: true, eventsExist: true, routesExist: true })
 
