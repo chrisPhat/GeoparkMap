@@ -103,7 +103,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
             routeDocuments = routeDocs
         })*/
 
-        res.status(200).render('adminDashboard', { layout: 'admin', data: { "pinDocs": pinDocuments, "eventDocs": eventDocuments, "routeDocs": routeDocuments }, pinsExist: true, eventsExist: true, routesExist: true })
+        res.status(200).render('adminDashboard', { layout: 'admin', pinsExist: true, eventsExist: true, routesExist: true })
 
 
     } catch (err) {
