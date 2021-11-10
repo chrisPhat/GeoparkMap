@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 var passport = require('passport');
 var cors = require('cors');
 
-var allowedOrigins = ['http://localhost:3000', 'https://geopark-beta.herokuapp.com/'];
+/*var allowedOrigins = ['http://localhost:3000', 'https://geopark-beta.herokuapp.com/'];
 router.use(cors({
     origin: function (origin, callback) {
         // allow requests with no origin 
@@ -20,7 +20,7 @@ router.use(cors({
         return callback(null, true);
     }
 }));
-
+*/
 var { isAuth } = require('../middleware/isAuth');
 require('../middleware/passport')(passport);
 
@@ -71,6 +71,7 @@ router.post('/createUser', async (req, res) => {
 //Accepts login credentials and processes for auth
 router.post('/signin', (req, res, next) => {
     try {
+        console.log('signing in');
         passport.authenticate('local', {
             successRedirect: '/admin/dashboard',
             failureRedirect: '/?incorrectLogin'
