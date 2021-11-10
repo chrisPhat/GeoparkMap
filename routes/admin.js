@@ -92,7 +92,7 @@ router.get('/signout', isAuth, (req, res) => {
 //Returns Admin dashboard - private route, requires Auth
 router.get('/dashboard', isAuth, async (req, res) => {
     try {
-        var eventDocuments, routeDocuments;
+        /*var eventDocuments, routeDocuments;
         
         await Events.find({}, (err, eventDocs) => {
             if (err) throw err;
@@ -101,7 +101,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
         await Routes.find({}, (err, routeDocs) => {
             if (err) throw err;
             routeDocuments = routeDocs
-        })
+        })*/
 
         res.status(200).render('adminDashboard', { layout: 'admin', data: { "pinDocs": pinDocuments, "eventDocs": eventDocuments, "routeDocs": routeDocuments }, pinsExist: true, eventsExist: true, routesExist: true })
 
