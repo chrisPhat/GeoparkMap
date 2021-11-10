@@ -116,21 +116,4 @@ router.get('/dashboard', isAuth, async (req, res) => {
 })
 
 
-router.get('/dashboard', isAuth, (req, res) => {
-    //console.log("getEventsAdmin");
-    try {
-        Events.find({}).lean()
-            .exec((err, pind) => {
-                if (pind.length) {
-                    res.status(200).render('adminDashboard', { layout: 'admin', pind: pind, pindExist: true });
-                } else {
-                    res.status(200).render('adminDashboard', { layout: 'admin', pindExist: true });
-                }
-            });
-    } catch (err) {
-        console.log(err.message);
-        res.status(500).send('Server Error')
-    }
-})
-
 module.exports = router;
